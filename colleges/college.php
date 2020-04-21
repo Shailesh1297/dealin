@@ -15,7 +15,7 @@ class College{
                 {
                     $flag[]=$row;
                  } 
-
+                 mysqli_close($conn);
                  return $flag;
             }
     }
@@ -34,7 +34,7 @@ class College{
                 {
                     $flag[]=$row;
                  } 
-
+                 mysqli_close($conn);
                  return $flag;
             }
     }

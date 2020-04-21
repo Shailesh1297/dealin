@@ -21,22 +21,18 @@
 
                         
                         if(mysqli_num_rows($execute)==1)
-                        {
-                                
-                               
-                               
-                               $flag['flag']='1';
+                        { 
+                               $flag['flag']=1;
                                 while($row=mysqli_fetch_array($execute))
                                      {
                                          $flag[]=$row;
                                       } 
-                                     
-                                   
-                                   
+                                                
                         }else{
-                               $flag['flag']='0';
+                               $flag['flag']=0;
                                
                             }
+                            mysqli_close($conn);
                             return $flag;
                     }
              }

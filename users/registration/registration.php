@@ -10,23 +10,23 @@ class Registration{
     require(root('database')); 
 
     if($conn){
+        //inserting user info
         $query="INSERT INTO users( name,college_id,email,mobile,user_type,isactive) VALUES ('$this->name','$this->college_id','$this->email',$this->mobile,0,0)";
         $user=mysqli_query($conn,$query);
- 
         $userId=mysqli_insert_id($conn);
-        
+        //inserting user password
         $query="INSERT INTO passwords(user_id,password)VALUES($userId,'$this->password')";
         $password=mysqli_query($conn,$query);
 
         if($user && $password)
            {
-               $flag['flag']='1';
+               $flag['flag']=1;
            
            }
             else{
-                $flag['flag']='0';
+                $flag['flag']=0;
            } 
-
+           mysqli_close($conn);
            return $flag;
 
         }
@@ -42,9 +42,16 @@ class Registration{
         $execute=mysqli_query($conn,$query);
 
         if(mysqli_num_rows($execute)==1)
+           {
+            mysqli_close($conn);
             return true;
-        else 
+
+           } 
+        else {
+            mysqli_close($conn);
             return false;
+           }
+           
         
 
         }
@@ -79,6 +86,8 @@ class Registration{
                 $this->college_id=$collgeId;
             }
         }
+
+        mysqli_close($conn);
   }
 
 }

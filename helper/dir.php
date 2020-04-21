@@ -29,7 +29,25 @@
     return $root.'colleges/college.php';
    }
 
+	if($dir=='products')
+	{
+		return $root.'products/product.php';
+  }
+  
+  if($dir=='product_image')
+  {
+    return $root.'images/product_images/';
+  }
+  
+  if($dir=='orders')
+  {
+	 return $root.'users/orders/orders.php'; 
+  }
 
+  if($dir=='deliveries')
+  {
+	 return $root.'users/deliveries/delivery.php'; 
+  }
 
  }
 
