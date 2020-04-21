@@ -35,7 +35,31 @@ class Delivery
 
   }
 
-}
+
+  public function completeDelivery($orderId)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+    require(root('database')); 
+
+            if($conn){
+            //updating order status
+            $query="UPDATE orders SET deal='1', delivered_on=NOW() WHERE order_id=$orderId";
+            $execute=mysqli_query($conn,$query);
+
+                if($execute)
+                {
+                    $flag['flag']=1;
+                }else
+                    {
+                        $flag['flag']=0;
+                    }
+                
+            mysqli_close($conn);
+            return $flag;
+              }
+  }
+
+  }
 
 
 ?>

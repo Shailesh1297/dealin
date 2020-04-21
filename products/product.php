@@ -110,7 +110,29 @@
 	  
 	  public function userProducts($user_id)
 	  {
-		
+       require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+      require(root('database')); 
+
+      if($conn){
+         $query="SELECT A.item_id,A.item_name,A.item_price,B.category,A.description,A.image FROM items as A LEFT JOIN categories as B ON A.category_id=B.category_id WHERE A.seller_id=$user_id";
+
+         $execute=mysqli_query($conn,$query);
+               if(mysqli_num_rows($execute)>0)
+               {   
+                  $flag['flag']=1;
+                  while($row=mysqli_fetch_array($execute))
+                     {
+                        $pdt[]=$row;
+                     } 
+                  $flag[]=$pdt;
+                     
+                     
+               }else{
+                  $flag['flag']=0;
+               }
+            mysqli_close($conn);
+			return $flag;
+         }
 		
 		  
 	  }

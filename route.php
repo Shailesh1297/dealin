@@ -109,7 +109,6 @@ function route($page)
 		require_once(root('products'));
 		$product=new Product;
 		$user_id=$_POST['user_id'];
-		
 		print(json_encode($product->userProducts($user_id)));
 		
 		
@@ -173,6 +172,15 @@ function route($page)
 
 	}
 
+	// //complete delivery
+	if($page=='complete_delivery')
+	{
+		require_once(root('deliveries'));
+		$delivery=new Delivery;
+		$order_id=$_POST['order_id'];	
+		print(json_encode($delivery->completeDelivery($order_id)));		
+	}
+
 	//message
 	if($page=='send_message')
 	{
@@ -194,6 +202,17 @@ function route($page)
 		$message=new Message;
 		$user_id=$_POST['user_id'];
 		print(json_encode($message->getAllMessages($user_id)));
+
+	}
+
+	//read message
+	if($page=='message_readed')
+	{
+		require_once(root('messages'));
+		$message=new Message;
+		$message_id=$_POST['message_id'];
+		$message->readMessage($message_id);
+		
 
 	}
 

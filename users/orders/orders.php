@@ -24,7 +24,7 @@
 
       if($conn){
           //inserting product info
-          $query="INSERT INTO orders( item_id,buyer_id,pay_mode_id,venue) VALUES ($this->item_id,$this->buyer_id,$this->payment_mode,'$this->venue')";
+          $query="INSERT INTO orders( item_id,buyer_id,pay_mode_id,venue,ordered_on) VALUES ($this->item_id,$this->buyer_id,$this->payment_mode,'$this->venue',now())";
           
           $execute=mysqli_query($conn,$query);
 
@@ -82,12 +82,12 @@
                     $order[]=$row;
                  } 
 				 $flag[]=$order;
-                 mysqli_close($conn);
+                 
                  
 			}else{
 				 $flag['flag']=0;
 			}
-			
+            mysqli_close($conn);
 			return $flag;
             }
 		
