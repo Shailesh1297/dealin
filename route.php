@@ -173,6 +173,30 @@ function route($page)
 
 	}
 
+	//message
+	if($page=='send_message')
+	{
+		require_once(root('messages'));
+		$message=new Message;
+		$order_id=$_POST['order_id'];
+		$msg=$_POST['message'];
+		$venue=$_POST['venue'];
+		$message->setMessage($order_id,$venue,$msg);
+		print(json_encode($message->saveMessage()));
+		
+
+	}
+
+	//user_messages
+	if($page=='user_messages')
+	{
+		require_once(root('messages'));
+		$message=new Message;
+		$user_id=$_POST['user_id'];
+		print(json_encode($message->getAllMessages($user_id)));
+
+	}
+
 }
 
 

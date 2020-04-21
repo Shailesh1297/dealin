@@ -49,6 +49,11 @@
 	 return $root.'users/deliveries/delivery.php'; 
   }
 
+  if($dir=='messages')
+  {
+	 return $root.'users/messages/message.php'; 
+  }
+
  }
 
 ?>
