@@ -113,6 +113,41 @@ function route($page)
 		
 		
 	}
+
+	//does the item exist in order table
+	if($page=='check_product')
+	{
+		require_once(root('products'));
+		$product=new Product;
+		$item_id=$_POST['item_id'];
+		print(json_encode($product->checkProduct($item_id)));
+
+	}
+
+	if($page=='update_product')
+	{
+		require_once(root('products'));
+		 header('Content-type:bitmap; charset=utf8');
+		$product=new Product;
+		 $pdt_id=$_POST['item_id'];
+		 $pdt_name=$_POST['item_name'];
+		 $pdt_price=$_POST['item_price'];
+		$pdt_description=$_POST['description'];
+		$image_name=substr($_POST['image_name'],50);
+		 
+			//decoding image
+			$decode_string=base64_decode($_POST['image']);
+		    $imgname=$image_name;
+			$path=root('product_image').$imgname;
+			$file=fopen($path,'wb');
+			$is_written=fwrite($file,$decode_string);
+			fclose($file);
+			$pdt_image="http://192.168.43.80/dealin/images/product_images/".$imgname;
+
+      print(json_encode($product->updateProduct($pdt_id,$pdt_name,$pdt_price,$pdt_description,$pdt_image)));
+
+
+	}
 	
 	//categories
 	if($page=='categories')
