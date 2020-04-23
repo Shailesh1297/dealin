@@ -32,6 +32,45 @@ function route($page)
        
   } 
 
+  //update profile
+
+  if($page=='user_update')
+  {
+	require_once(root('registration'));
+
+    $register=new Registration;
+    $userid=$_POST['user_id'];
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+	$phone=$_POST['phone'];
+	print(json_encode($register->updateProfile($userid,$name,$email,$phone)));
+    
+
+  }
+  //password update
+
+  if($page=='password_update')
+  {
+
+	require_once(root('registration'));
+
+    $register=new Registration;
+	$userid=$_POST['user_id'];
+	$newpass=$_POST['newpass'];
+	print(json_encode($register->updatePassword($userid,$newpass)));
+  }
+
+  //password recovery
+
+  if($page=='password_recovery')
+  {
+	require_once(root('registration'));
+    $register=new Registration;
+	$email=$_POST['email'];
+	print(json_encode($register->recoverPassword($email)));
+
+  }
+
   //login
   if($page=='login')     
   {
@@ -63,6 +102,15 @@ function route($page)
       print(json_encode($college->colleges($city)));
   }
 
+  //get college and city for user based on collegeId
+  if($page=='college')
+  {
+	require_once(root('colleges'));
+	$college=new College;
+	$college_id=$_POST['college_id'];
+	print(json_encode($college->getUserCollege($college_id)));
+  }
+
 //products addition
 	if($page=='products')
 	{
@@ -86,6 +134,15 @@ function route($page)
 
       $product->setProduct($user_id,$pdt_name,$pdt_price,$pdt_category,$pdt_description,$pdt_image);
       print(json_encode($product->saveProduct()));
+
+	}
+
+	if($page=='delete_product')
+	{
+		require_once(root('products'));
+		$product=new Product;
+		$item_id=$_POST['item_id'];
+		print(json_encode($product->deleteProduct($item_id)));
 
 	}
 	

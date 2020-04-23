@@ -207,8 +207,39 @@
                      $query="UPDATE items SET item_name='$pdt_name',item_price='$pdt_price',description='$pdt_description',image='$pdt_image' WHERE item_id=$pdt_id";
                      
                      $execute=mysqli_query($conn,$query);
+                     $num=mysqli_affected_rows($conn);
                
-                     if($execute)
+                     if($num==1)
+                     {
+                        $flag['flag']=1;
+                     }else
+                           {
+                              $flag['flag']=0;
+                           }
+                        
+                     mysqli_close($conn);
+                        return $flag;
+                        
+                  }  
+
+         }
+
+
+         public function deleteProduct($itemId)
+         {
+
+            require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+            require(root('database')); 
+               
+                  if($conn)
+                  {
+                     
+                     $query="DELETE FROM items WHERE item_id=$itemId";
+                     
+                     $execute=mysqli_query($conn,$query);
+                     $num=mysqli_affected_rows($conn);
+               
+                     if($num==1)
                      {
                         $flag['flag']=1;
                      }else

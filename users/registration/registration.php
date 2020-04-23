@@ -90,6 +90,95 @@ class Registration{
         mysqli_close($conn);
   }
 
+
+  //updating user profile
+
+  public function updateProfile($userId,$userName,$userEmail,$userPhone)
+  {
+
+    require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+    require(root('database')); 
+
+    if($conn){
+        //updating user info
+        $query="UPDATE users SET name='$userName',email='$userEmail',mobile=$userPhone WHERE user_id=$userId";
+        $execute=mysqli_query($conn,$query);
+        $num=mysqli_affected_rows($conn);
+
+        if($num==1)
+           {
+               $flag['flag']=1;
+           
+           }
+            else{
+                $flag['flag']=0;
+           } 
+           mysqli_close($conn);
+           return $flag;
+
+        }
+
+  }
+
+        //password recovery
+
+        public function recoverPassword($userEmail)
+        {
+            require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+         require(root('database')); 
+
+            if($conn)
+            {
+               $query="SELECT B.password FROM users as A inner join passwords as B on A.user_id=B.user_id WHERE A.email='$userEmail'";
+
+               $execute=mysqli_query($conn,$query);
+
+                     if(mysqli_num_rows($execute)==1)
+                     {   
+                        $flag['flag']=1;
+                        while($row=mysqli_fetch_array($execute))
+                           {
+                              $data[]=$row;
+                           } 
+                        $flag[]=$data;      
+                     }
+                     else
+                     {
+                        $flag['flag']=0;
+                     }
+                  mysqli_close($conn);
+               return $flag;
+            }
+
+        }
+
+        //updating password
+        public function updatePassword($userId,$newPass)
+        {
+            require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+            require(root('database')); 
+
+            if($conn){
+                //updating user info
+                $query="UPDATE passwords SET password='$newPass' WHERE user_id=$userId";
+                $execute=mysqli_query($conn,$query);
+                $num=mysqli_affected_rows($conn);
+
+                if($num==1)
+                {
+                    $flag['flag']=1;
+                
+                }
+                    else{
+                        $flag['flag']=0;
+                } 
+                mysqli_close($conn);
+                return $flag;    
+                    
+                }
+                
+        }
+
 }
 
 
