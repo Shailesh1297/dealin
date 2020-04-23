@@ -308,6 +308,17 @@ function route($page)
 
 	}
 
+	//inserting suggestions
+	if($page=='save_suggestion')
+	{
+		require_once(root('suggestions'));
+		$suggestion=new Suggestion;
+		$user_id=$_POST['user_id'];
+		$suggestedMsg=$_POST['suggestion'];
+		print(json_encode($suggestion->setSuggestion($user_id,$suggestedMsg)));
+
+	}
+
 }
 
 

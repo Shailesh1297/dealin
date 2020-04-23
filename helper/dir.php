@@ -54,6 +54,11 @@
 	 return $root.'users/messages/message.php'; 
   }
 
+  if($dir=='suggestions')
+  {
+    return $root.'admin/suggestions/suggestion.php'; 
+  }
+
  }
 
 ?>
