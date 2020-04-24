@@ -8,6 +8,16 @@ route($page);
 
 function route($page)
 {
+	//checking database connection
+
+if($page=='check_connection')
+{
+	require_once(root('databases'));
+	$db=new Database;
+	$db->checkConnection();
+	
+
+}
    //registration     
    if($page=='registration')     
   {
