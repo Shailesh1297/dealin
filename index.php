@@ -7,7 +7,9 @@
 </head>
 <body>
 <form action="route.php" method="post">
-<input type="hidden" name="page" value="check_connection">
+<input type="text" name="page" placeholder="page">
+<input type="number" name="user_id" placeholder="user id">
+<input type="text" name="category" placeholder="category">
 <button>Check</button>
 </form>
     

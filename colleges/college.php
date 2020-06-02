@@ -27,7 +27,7 @@ class College{
          require(root('database')); 
 
          if($conn){
-            $query="select college_name from colleges where city='$city'";
+            $query="select college_id,college_name from colleges where city='$city'";
             $execute=mysqli_query($conn,$query);
     
                 while($row=mysqli_fetch_array($execute))
@@ -56,6 +56,25 @@ class College{
                 return $flag;
            }
 
+    }
+
+//getting all colleges
+    public function allColleges()
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+        require(root('database')); 
+
+        if($conn){
+           $query="select college_id,college_name,city from colleges";
+           $execute=mysqli_query($conn,$query);
+   
+               while($row=mysqli_fetch_array($execute))
+               {
+                   $flag[]=$row;
+                } 
+                mysqli_close($conn);
+                return $flag;
+           }
     }
 }
 

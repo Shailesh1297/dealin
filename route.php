@@ -102,6 +102,15 @@ if($page=='check_connection')
       print(json_encode($cities->cities()));
   } 
 
+  //all colleges
+
+  if($page=='all_colleges')
+  {
+	require_once(root('colleges'));
+	$college=new College;
+	print(json_encode($college->allColleges()));
+  }
+
 //colleges based on city
   if($page=='colleges')     
   {
@@ -119,6 +128,15 @@ if($page=='check_connection')
 	$college=new College;
 	$college_id=$_POST['college_id'];
 	print(json_encode($college->getUserCollege($college_id)));
+  }
+
+  //adding Categories
+  if($page=='add_category')
+  {
+	require_once(root('products'));
+     $product=new Product;
+	$category=$_POST['category'];
+	print(json_encode($product->addCategory($category)));
   }
 
 //products addition

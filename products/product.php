@@ -101,12 +101,21 @@
             $query="SELECT A.item_id,A.item_name,A.item_price,B.category,A.description,A.image FROM items AS A LEFT JOIN categories AS B on A.category_id=B.category_id WHERE A.college_id=(SELECT college_id FROM users WHERE user_id='$user_id') AND A.item_id NOT IN (SELECT item_id FROM orders) AND A.seller_id <> '$user_id'";
             $execute=mysqli_query($conn,$query);
     
-                while($row=mysqli_fetch_array($execute))
-                {
-                    $flag[]=$row;
-                 } 
-                 mysqli_close($conn);
-                 return $flag;
+                        if(mysqli_num_rows($execute)>0)
+                        {   
+                           $flag['flag']=1;
+                           while($row=mysqli_fetch_array($execute))
+                              {
+                                 $pdt[]=$row;
+                              } 
+                           $flag[]=$pdt;  
+                              
+                        }else
+                        {
+                           $flag['flag']=0;
+                        }
+                     mysqli_close($conn);
+                        return $flag;
             }
 		  
 		  
@@ -252,6 +261,34 @@
                         
                   }  
 
+         }
+
+         //adding categories to categories table
+         public function addCategory($category)
+         {
+            require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+            require(root('database')); 
+               
+                  if($conn)
+                  {
+                     
+                     $query="INSERT INTO  categories(category) VALUES ('$category')";
+                     
+                     $execute=mysqli_query($conn,$query);
+                     $num=mysqli_affected_rows($conn);
+               
+                     if($num==1)
+                     {
+                        $flag['flag']=1;
+                     }else
+                           {
+                              $flag['flag']=0;
+                           }
+                        
+                     mysqli_close($conn);
+                        return $flag;
+                        
+                  }  
          }
 	   
 	   
