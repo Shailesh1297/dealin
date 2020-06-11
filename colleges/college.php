@@ -76,6 +76,35 @@ class College{
                 return $flag;
            }
     }
+
+    //adding a college
+    public function addCollege($collegeName,$city)
+    {
+        require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+        require(root('database')); 
+        if($conn)
+        {
+          //inserting college
+          $query="INSERT INTO `colleges`(`college_name`, `city`) VALUES ('$collegeName','$city')";
+          $execute=mysqli_query($conn,$query);
+          $num=mysqli_affected_rows($conn);
+
+                    if($num==1)
+                    {
+                        $flag['flag']=1;
+                    
+                    }
+                    else{
+                            $flag['flag']=0;
+                    } 
+                    mysqli_close($conn);
+                       
+           }else
+           {
+               $flag['flag']=0;
+           }
+           return $flag;
+    }
 }
 
 ?>

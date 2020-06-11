@@ -18,6 +18,64 @@ if($page=='check_connection')
 	
 
 }
+/**admin backend code**/
+
+//user lists of a college
+if($page=='user_list')
+{
+	require_once(root('lists'));
+	$collegeId=$_POST['college_id'];
+	$list=new AdminList;
+	print(json_encode($list->getUserList($collegeId)));
+}
+
+//colleges list
+if($page=='college_list')
+{
+	require_once(root('lists'));
+	$list=new AdminList;
+	print(json_encode($list->getCollegeList()));
+}
+
+//product lists
+if($page=='product_list')
+{
+	require_once(root('lists'));
+	$collegeId=$_POST['college_id'];
+	$list=new AdminList;
+	print(json_encode($list->getProductList($collegeId)));
+}
+
+//suggestion lists
+if($page=='suggestion_list')
+{
+	require_once(root('lists'));
+	$collegeId=$_POST['college_id'];
+	$list=new AdminList;
+	print(json_encode($list->getSuggestionList($collegeId)));
+}
+
+
+//transaction lists
+if($page=='transaction_list')
+{
+	require_once(root('lists'));
+	$collegeId=$_POST['college_id'];
+	$list=new AdminList;
+	print(json_encode($list->getTransactionList($collegeId)));
+}
+
+//adding college
+if($page=='add_college')
+{
+	require_once(root('colleges'));
+	$collegeName=$_POST['college_name'];
+	$city=$_POST['college_city'];
+	$college=new College;
+	print(json_encode($college->addCollege($collegeName,$city)));
+}
+
+/**User backend code**/
    //registration     
    if($page=='registration')     
   {

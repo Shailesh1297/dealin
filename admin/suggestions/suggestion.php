@@ -12,7 +12,7 @@ class Suggestion
             if($conn)
             {
                 //inserting  user suggestions
-                $query="INSERT INTO suggestions(user_id, suggestion) VALUES ($userId,'$suggestion')";
+                $query="INSERT INTO suggestions(user_id, date,suggestion) VALUES ($userId,CURDATE(),'$suggestion')";
                 $execute=mysqli_query($conn,$query);
                 $num=mysqli_affected_rows($conn);
 

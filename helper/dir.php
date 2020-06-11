@@ -72,7 +72,11 @@
     return $root.'admin/suggestions/suggestion.php'; 
   }
 
-
+//admin list
+if($dir=='lists')
+{
+  return $root.'admin/lists/list.php'; 
+}
   
 
  }

@@ -8,8 +8,8 @@
 <body>
 <form action="route.php" method="post">
 <input type="text" name="page" placeholder="page">
-<input type="number" name="user_id" placeholder="user id">
-<input type="text" name="category" placeholder="category">
+<input type="text" name="college_name" placeholder="college name">
+<input type="text" name="college_city" placeholder="college city">
 <button>Check</button>
 </form>
     
