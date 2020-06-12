@@ -12,7 +12,7 @@ class AdminList
 
     if($conn)
          {
-            $query="SELECT `user_id`, `name`, `email`, `mobile`, `isactive` FROM `users` WHERE  `college_id`=$collegeId";
+            $query="SELECT `user_id`, `name`, `email`, `mobile`, `isactive` FROM `users` WHERE  `college_id`=$collegeId AND user_type=0" ;
             $execute=mysqli_query($conn,$query);
     
                         if(mysqli_num_rows($execute)>0)
