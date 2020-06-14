@@ -405,6 +405,27 @@ if($page=='add_college')
 
 	}
 
+	//read suggestion
+	if($page=='suggestion_readed')
+	{
+		require_once(root('suggestions'));
+		$suggestion=new Suggestion;
+		$suggestionId=$_POST['suggestion_id'];
+		$suggestion->readSuggestion($suggestionId);
+		
+
+	}
+
+	//update
+	if($page=='check_update')
+	{
+		require_once(root('update'));
+		$update=new Update;
+		print(json_encode($update->getUpdateInfo()));
+		
+
+	}
+
 }
 
 

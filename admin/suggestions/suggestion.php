@@ -32,6 +32,22 @@ class Suggestion
 
     }
 
+    public function readSuggestion($suggestionId)
+  {
+    require_once($_SERVER['DOCUMENT_ROOT'].'/dealin/helper/dir.php');
+    require(root('database')); 
+
+            if($conn){
+            //updating suggestion status
+            $query="UPDATE suggestions SET status=1 WHERE suggestion_id=$suggestionId ";
+            $execute=mysqli_query($conn,$query);
+            mysqli_close($conn);
+                
+            }
+
+
+  }
+
 
 
 

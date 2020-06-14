@@ -77,6 +77,25 @@ if($dir=='lists')
 {
   return $root.'admin/lists/list.php'; 
 }
+
+//info file
+
+if($dir=='info')
+{
+  return $root.'update/info/info.txt';
+}
+
+//app file
+
+if($dir=='app')
+{
+  return $root.'update/app/dealin.apk';
+}
+
+if($dir=='update')
+{
+  return $root.'update/update.php';
+}
   
 
  }
